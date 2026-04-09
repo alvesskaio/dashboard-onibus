@@ -2,7 +2,7 @@
 
 Trabalho desenvolvido para a disciplina **Extração e Preparação de Dados**.
 
-**Aluno:** Kaio Alves
+**Aluno:** Kaio Alves, Marcelo Saggio
 
 ---
 

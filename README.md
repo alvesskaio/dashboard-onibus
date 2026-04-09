@@ -1,73 +1,58 @@
-# React + TypeScript + Vite
+# Dashboard de Monitoramento de Ônibus
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Trabalho desenvolvido para a disciplina **Extração e Preparação de Dados**.
 
-Currently, two official plugins are available:
+**Aluno:** Kaio Alves
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Sobre o Projeto
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Dashboard interativo para visualização e análise de dados de posicionamento de ônibus em tempo real. A aplicação consome um dataset com 10.000 registros de GPS de ônibus e apresenta as informações de forma visual e filtrável.
 
-## Expanding the ESLint configuration
+## Funcionalidades
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Mapa interativo** — exibe a posição geográfica de cada ônibus com marcadores coloridos por faixa de velocidade
+- **Estatísticas gerais** — cards com total de veículos, velocidade média, ônibus em movimento e parados
+- **Gráficos analíticos** — distribuição de velocidades e ranking das linhas com mais registros
+- **Filtros dinâmicos** — filtragem por linha, faixa de velocidade e busca por número de ordem ou linha
+- **Tabela de dados** — listagem paginada com todas as informações dos registros
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Tecnologias Utilizadas
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+| Tecnologia | Uso |
+|---|---|
+| React 19 + TypeScript | Framework principal e tipagem estática |
+| Vite | Bundler e servidor de desenvolvimento |
+| Tailwind CSS | Estilização |
+| Leaflet / React-Leaflet | Mapa interativo |
+| Recharts | Gráficos |
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Dataset
+
+Os dados utilizados são registros de GPS de ônibus do dia **02/03/2026**, contendo:
+
+- `ordem` — identificador do veículo
+- `linha` — linha operada
+- `latitude` / `longitude` — posição geográfica
+- `velocidade` — velocidade instantânea (km/h)
+- `datahora` — timestamp do registro no veículo
+- `datahoraenvio` — timestamp de envio
+- `datahoraservidor` — timestamp de recebimento no servidor
+
+Fonte: [alvaroriz/datascience_datasets](https://github.com/alvaroriz/datascience_datasets)
+
+## Como Executar
+
+```bash
+# Instalar dependências
+npm install
+
+# Iniciar servidor de desenvolvimento
+npm run dev
+
+# Gerar build de produção
+npm run build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Acesse `http://localhost:5173` após iniciar o servidor.
